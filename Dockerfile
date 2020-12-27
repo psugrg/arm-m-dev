@@ -47,6 +47,28 @@ RUN wget https://github.com/FreeRTOS/FreeRTOS/releases/download/${FREERTOS_VERSI
 # Set FREERTOSPATH (path to the FreeRTOS sources)
 ENV FREERTOSPATH=/opt/FreeRTOS-${FREERTOS_VERSION}/FreeRTOS
 
+# Install Segger JLink software pack
+# Start from dependencies
+RUN apt-get update && apt-get install -y \
+  libncurses5 \
+  libtinfo5
+WORKDIR /tmp
+# Copy the software pack from the current directory
+COPY JLink_Linux* ./JLink_Linux.deb
+# Install software pack
+RUN dpkg -i JLink_Linux.deb
+
+# Install Segger Ozone debugger
+# Start from dependencies
+RUN apt-get update && apt-get install -y \
+  libxrandr2 \
+  libxfixes3 \
+  libxcursor1
+# Copy the package containing the application
+COPY Ozone_Linux* ./Ozone_Linux.deb
+# Install debugger
+RUN dpkg -i Ozone_Linux.deb
+
 # Add user 
 
 # Default values for the user and group
