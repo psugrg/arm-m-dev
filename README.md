@@ -29,3 +29,8 @@ docker image build \
 
 Compiled image can be stored in `docker registry` or `docker hub` where it
 can be accessed by developers who want to install it via the DUSET image.
+
+## Installation
+
+Follow the instructions in DUSET in order to install this environment. Use
+`arm-m-dev` as a name of the base image `<image-name>`.
