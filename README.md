@@ -16,13 +16,7 @@ and [Ozone - The J-Link Debugger](https://www.segger.com/downloads/jlink/#Ozone)
 ## Compilation
 
 ```bash
-docker image build \
---build-arg USER_ID=$(id -u ${USER}) \
---build-arg GROUP_ID=$(id -g ${USER}) \
---build-arg USER_NAME=${USER} \
---build-arg GROUP_NAME=${USER} \
--t arm-m-dev \
-.
+docker image build -t arm-m-dev .
 ```
 
 ## Deployment
