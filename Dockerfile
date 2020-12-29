@@ -8,13 +8,13 @@ ENV IMAGE_NAME="arm-m-dev"
 # The content of this variable is called during the docker create action.
 # This is required by the Ozone debugger (run directly from docker)
 # Share USB devices to access target fia USB debugger
-ENV DOCKER_CREATE_EXTRA="-e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \ 
+ENV DOCKER_CREATE_EXTRA="-e DISPLAY=\$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \ 
     -v /tmp/.docker.xauth:/tmp/.docker.xauth:rw -e XAUTHORITY=/tmp/.docker.xauth \
     --privileged -v /dev/bus/usb:/dev/bus/usb"
 
 # Enable X11 forwarding by using the DDEN DOCKER_START_EXTRA variable. 
 # The content of this variable is called during the docker start action.
-ENV DOCKER_START_EXTRA="xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f /tmp/.docker.xauth nmerge -"
+ENV DOCKER_START_EXTRA="xauth nlist \$DISPLAY | sed -e 's/^..../ffff/' | xauth -f /tmp/.docker.xauth nmerge -"
 
 # Set timezone. It's required by lots of packages. 
 # It's also better than setting DEBIAN_FRINTEND=noninteractive since, in dev-environment
